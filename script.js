@@ -17,7 +17,13 @@ const GameBoard = (() => {
     const bindCellEvents = () => {
         boardCells.forEach((cell, index) => {
             cell.addEventListener('click', () => {
-                StateManager.turnManager(index);
+
+                if (board[index] != null) {
+                    alert('space taken, choose another')
+                } else {
+                    StateManager.turnManager(index);
+                }
+
             })
         });
     }
