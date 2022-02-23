@@ -13,4 +13,6 @@
 
 .boardCell {
     background-color: aliceblue;
+    font-size: 6rem;
+    text-align: center;
 }

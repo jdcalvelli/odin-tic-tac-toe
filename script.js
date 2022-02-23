@@ -43,11 +43,11 @@ const StateManager = (() => {
     const player2 = playerFactory('O');
 
     const turnManager = (position) => {
-        if (currentTurn == 'player1') {   
+        if (currentTurn == 'player1' && winningPlayer == null) {   
             GameBoard.updateBoard(player1.value, position);
             evaluateWin(player1);
             currentTurn = 'player2';
-        } else if (currentTurn == 'player2') {
+        } else if (currentTurn == 'player2' && winningPlayer == null) {
             GameBoard.updateBoard(player2.value, position);
             evaluateWin(player2);
             currentTurn = 'player1';
