@@ -8,3 +8,17 @@ const GameBoard = (() => {
         updateBoard
     }
 })();
+
+const playerFactory = (value) => {
+    const playTurn = () => {
+        GameBoard.updateBoard(value, prompt('where do you want to play'));
+    };
+    return {
+        value,
+        playTurn
+    }
+}
+
+const player1 = playerFactory('X');
+
+player1.playTurn();
