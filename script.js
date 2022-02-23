@@ -19,6 +19,28 @@ const playerFactory = (value) => {
     }
 }
 
-const player1 = playerFactory('X');
+const StateManager = (() => {
+    let currentTurn = 'player1';
+    let winningPlayer = null;
 
-player1.playTurn();
+    const player1 = playerFactory('X');
+    const player2 = playerFactory('O');
+
+    const turnManager = () => {
+        while (winningPlayer == null) {
+            if (currentTurn == 'player1') {
+                player1.playTurn();
+                currentTurn = 'player2';
+            } else if (currentTurn == 'player2') {
+                player2.playTurn();
+                currentTurn = 'player1';
+            }
+        }
+    }
+
+    return {
+        turnManager
+    }
+})();
+
+StateManager.turnManager();
