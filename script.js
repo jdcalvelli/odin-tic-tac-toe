@@ -20,12 +20,8 @@ const GameBoard = (() => {
 })();
 
 const playerFactory = (value) => {
-    const playTurn = () => {
-        GameBoard.updateBoard(value, prompt('where do you want to play'));
-    };
     return {
-        value,
-        playTurn
+        value
     }
 }
 
@@ -38,12 +34,12 @@ const StateManager = (() => {
 
     const turnManager = () => {
         while (winningPlayer == null) {
-            if (currentTurn == 'player1') {
-                player1.playTurn();
+            if (currentTurn == 'player1') {   
+                GameBoard.updateBoard(player1.value, prompt('test'));
                 evaluateWin(player1);
                 currentTurn = 'player2';
             } else if (currentTurn == 'player2') {
-                player2.playTurn();
+                GameBoard.updateBoard(player2.value, prompt('test'));
                 evaluateWin(player2);
                 currentTurn = 'player1';
             }
