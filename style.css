@@ -1,0 +1,16 @@
+.gameBoard {
+    width: 450px;
+    height: 450px;
+
+    background-color: lightblue;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    gap: 5px;
+}
+
+.boardCell {
+    background-color: aliceblue;
+}

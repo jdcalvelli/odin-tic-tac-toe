@@ -1,11 +1,21 @@
 const GameBoard = (() => {
     const board = new Array(9);
+
+    const boardCells = document.querySelectorAll('.boardCell');
+
+    const renderBoard = () => {
+        boardCells.forEach((cell, index) => {
+            cell.textContent = board[index];
+        });
+    }
+
     const updateBoard = (value, position) => {
         board[position] = value;
+        renderBoard();
     };
     return {
         board,
-        updateBoard
+        updateBoard,
     }
 })();
 
