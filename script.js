@@ -13,9 +13,19 @@ const GameBoard = (() => {
         board[position] = value;
         renderBoard();
     };
+
+    const bindCellEvents = () => {
+        boardCells.forEach((cell, index) => {
+            cell.addEventListener('click', () => {
+                StateManager.turnManager(index);
+            })
+        });
+    }
+
     return {
         board,
         updateBoard,
+        bindCellEvents,
     }
 })();
 
@@ -32,17 +42,15 @@ const StateManager = (() => {
     const player1 = playerFactory('X');
     const player2 = playerFactory('O');
 
-    const turnManager = () => {
-        while (winningPlayer == null) {
-            if (currentTurn == 'player1') {   
-                GameBoard.updateBoard(player1.value, prompt('test'));
-                evaluateWin(player1);
-                currentTurn = 'player2';
-            } else if (currentTurn == 'player2') {
-                GameBoard.updateBoard(player2.value, prompt('test'));
-                evaluateWin(player2);
-                currentTurn = 'player1';
-            }
+    const turnManager = (position) => {
+        if (currentTurn == 'player1') {   
+            GameBoard.updateBoard(player1.value, position);
+            evaluateWin(player1);
+            currentTurn = 'player2';
+        } else if (currentTurn == 'player2') {
+            GameBoard.updateBoard(player2.value, position);
+            evaluateWin(player2);
+            currentTurn = 'player1';
         }
     };
 
@@ -82,8 +90,12 @@ const StateManager = (() => {
     };
 
     return {
+        player1,
+        player2,
         turnManager
     }
 })();
 
-StateManager.turnManager();
+GameBoard.bindCellEvents();
+
+// StateManager.turnManager();
