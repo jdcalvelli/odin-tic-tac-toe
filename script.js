@@ -40,10 +40,19 @@ const GameBoard = (() => {
     }
 })();
 
-//simple Factory Function for players - only thing relevant to them is their value (could potentially have written a play function)
-const playerFactory = (value) => {
+//simple Factory Function for players
+const playerFactory = (name, value) => {
+
+    const renderName = () => {
+        let nameDisplay = document.createElement('p');
+        nameDisplay.textContent = `${value}: ${name}`;
+        document.querySelector('body').appendChild(nameDisplay);
+    }
+
     return {
-        value
+        name,
+        value,
+        renderName
     }
 }
 
@@ -54,8 +63,12 @@ const StateManager = (() => {
     let winningPlayer = null;
 
     //utilizing factories for players to make an x player and an o player
-    const player1 = playerFactory('X');
-    const player2 = playerFactory('O');
+    const player1 = playerFactory(prompt('what is player 1 name'), 'X');
+    const player2 = playerFactory(prompt('what is player 2 name'), 'O');
+
+    //run the display name functions
+    player1.renderName();
+    player2.renderName();
 
     //turnManager fcn, crux of gameplay logic - check if game is going, whos turn it is, and then updates board at position passed in in event listener above
     const turnManager = (position) => {
@@ -74,35 +87,35 @@ const StateManager = (() => {
     const evaluateWin = (player) => {
         //this checks for win
         if (player.value == GameBoard.board[0] && player.value == GameBoard.board[1] && player.value == GameBoard.board[2]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[3] && player.value == GameBoard.board[4] && player.value == GameBoard.board[5]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[6] && player.value == GameBoard.board[7] && player.value == GameBoard.board[8]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[0] && player.value == GameBoard.board[3] && player.value == GameBoard.board[6]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[1] && player.value == GameBoard.board[4] && player.value == GameBoard.board[7]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[2] && player.value == GameBoard.board[5] && player.value == GameBoard.board[8]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[0] && player.value == GameBoard.board[4] && player.value == GameBoard.board[8]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         else if (player.value == GameBoard.board[2] && player.value == GameBoard.board[4] && player.value == GameBoard.board[6]) {
-            winningPlayer = player.value;
+            winningPlayer = player.name;
             alert(`congrats ${winningPlayer}, you win`);
         }
         //checking for tie
