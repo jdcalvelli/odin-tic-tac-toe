@@ -1,6 +1,6 @@
 //IIFE Module for Gameboard
 const GameBoard = (() => {
-    const board = new Array(9);
+    const board = new Array(9).fill(null);
 
     //Grabbing DOM Items
     const boardCells = document.querySelectorAll('.boardCell');
@@ -72,6 +72,7 @@ const StateManager = (() => {
 
     //evaluatewin - used to check whether to end the game or not - ie the rules of tic tac toe!
     const evaluateWin = (player) => {
+        //this checks for win
         if (player.value == GameBoard.board[0] && player.value == GameBoard.board[1] && player.value == GameBoard.board[2]) {
             winningPlayer = player.value;
             alert(`congrats ${winningPlayer}, you win`);
@@ -103,6 +104,11 @@ const StateManager = (() => {
         else if (player.value == GameBoard.board[2] && player.value == GameBoard.board[4] && player.value == GameBoard.board[6]) {
             winningPlayer = player.value;
             alert(`congrats ${winningPlayer}, you win`);
+        }
+        //checking for tie
+        else if (GameBoard.board.every(item => item !== null)) {
+            winningPlayer = 'tie';
+            alert('you tied. try again.');
         }
     };
 
