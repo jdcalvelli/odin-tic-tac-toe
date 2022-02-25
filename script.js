@@ -81,6 +81,9 @@ const StateManager = (() => {
     player1.renderName();
     player2.renderName();
 
+    //the only global space thing we had to do is actually call the bindCellEvents function!
+    GameBoard.bindCellEvents();
+
     //turnManager fcn, crux of gameplay logic - check if game is going, whos turn it is, and then updates board at position passed in in event listener above
     const turnManager = (position) => {
         if (currentTurn == 'player1' && winningPlayer == null) {   
@@ -142,6 +145,3 @@ const StateManager = (() => {
         turnManager
     }
 })();
-
-//the only global space thing we had to do is actually call the bindCellEvents function!
-GameBoard.bindCellEvents();
