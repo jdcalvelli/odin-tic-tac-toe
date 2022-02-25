@@ -2,6 +2,17 @@
 const GameBoard = (() => {
     const board = new Array(9).fill(null);
 
+    //button for restarting game
+    const makeRestartButton = () => {
+        let restartButton = document.createElement('button');
+        restartButton.textContent = 'restart';
+        restartButton.addEventListener('click', () => {
+            location.reload()
+        });
+        document.querySelector('body').appendChild(restartButton);
+    }
+    makeRestartButton(); //i wish we could put an iife inside an iife?
+
     //Grabbing DOM Items
     const boardCells = document.querySelectorAll('.boardCell');
 
